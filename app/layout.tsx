@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Providers, ThemeProvider } from "@/wrappers";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 const vazirmatn = localFont({
   src: [
@@ -18,20 +20,24 @@ export const metadata: Metadata = {
   description: "بلاگر، وبلاگ روزانه‌ی تو",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
-    <Providers>
-      <html lang="en" dir="rtl">
-        <body className={vazirmatn.variable}>
-          <ThemeProvider attribute="class" defaultTheme="light">
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </Providers>
+    <SessionProvider session={session}>
+      <Providers>
+        <html lang="en" dir="rtl" suppressHydrationWarning>
+          <body className={vazirmatn.variable}>
+            <ThemeProvider attribute="class" defaultTheme="light">
+              {children}
+            </ThemeProvider>
+          </body>
+        </html>
+      </Providers>
+    </SessionProvider>
   );
 }

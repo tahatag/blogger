@@ -2,8 +2,12 @@
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const session = useSession();
+  console.log(session);
+
   const { setTheme, theme } = useTheme();
 
   const toggleTheme = () => {

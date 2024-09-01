@@ -9,9 +9,7 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   return (
     <DirectionProvider dir="rtl">
-      <QueryClientProvider client={queryClient}>
-        {children}
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </DirectionProvider>
   );
 };
