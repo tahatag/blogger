@@ -1,18 +1,14 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
+import "@/styles/globals.css";
+import "@/styles/prosemirror.css";
 import { Providers, ThemeProvider } from "@/wrappers";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { Noto_Sans_Arabic } from "next/font/google";
 
-const vazirmatn = localFont({
-  src: [
-    {
-      path: "./fonts/Vazirmatn[wght].woff2",
-      weight: "100 900",
-    },
-  ],
-  variable: "--font-vazirmatn",
+const notoSansArabic = Noto_Sans_Arabic({
+  subsets: ["arabic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -31,7 +27,7 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <Providers>
         <html lang="en" dir="rtl" suppressHydrationWarning>
-          <body className={vazirmatn.variable}>
+          <body className={notoSansArabic.className}>
             <ThemeProvider attribute="class" defaultTheme="light">
               {children}
             </ThemeProvider>
