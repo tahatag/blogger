@@ -1,0 +1,15 @@
+{
+  "title": "Blogger",
+  "description": "Your daily blogging platform",
+  "login": "Login with GitHub",
+  "new-post": "New Post",
+  "nav": {
+    "home": "Home",
+    "about-us": "About Us",
+    "my-account": "My Account"
+  },
+  "user": {
+    "dashboard": "Dashboard",
+    "logout": "Logout"
+  }
+}

@@ -3,22 +3,24 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarImage, AvatarFallback } from "./ui/avatar";
 import { ChevronDown, LayoutDashboard, LogOut, Pen, Plus } from "lucide-react";
 import { Button } from "./ui/button";
+import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function UserMenu() {
+  const { t } = useTranslation("common");
   const { data: session } = useSession();
   return !session ? null : (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Button variant="ghost" asChild>
           <div className="gap-2">
-            <Avatar className="w-8 h-8 border-white/50 border-3">
+            <Avatar className="w-6 h-6 border-white/50 border-3">
               <AvatarImage src={session?.user?.image as string} />
               <AvatarFallback>{(session?.user?.name || "")[0]}</AvatarFallback>
             </Avatar>
@@ -30,21 +32,23 @@ export default function UserMenu() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem className="gap-1 cursor-pointer">
-          <LayoutDashboard size={18} />
-          داشبورد
-        </DropdownMenuItem>
-        <DropdownMenuItem className="gap-1 cursor-pointer">
+        <Link href="/dashboard">
+          <DropdownMenuItem className="gap-2 cursor-pointer">
+            <LayoutDashboard size={18} />
+            {t("user.dashboard")}
+          </DropdownMenuItem>
+        </Link>
+        <DropdownMenuItem className="gap-2 cursor-pointer">
           <Plus size={18} />
-          پست جدید
+          <p>{t("new-post")}</p>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          className="gap-1 cursor-pointer"
+          className="gap-2 cursor-pointer"
           onClick={() => signOut()}
         >
           <LogOut size={18} />
-          خروج
+          {t("user.logout")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

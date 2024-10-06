@@ -1,17 +1,17 @@
-export const publicRoutes = [
+export const publicRoutes = (localizedRoutes: { [key: string]: string }) => [
   {
-    label: "خانه",
+    label: localizedRoutes["home"],
     url: "/",
   },
   {
-    label: "درباره ما",
-    url: "/about",
+    label: localizedRoutes["about-us"],
+    url: "/about-us",
   },
 ];
 
-export const privateRoutes = [
+export const privateRoutes = (localizedRoutes: { [key: string]: string }) => [
   {
-    label: "اکانت من",
+    label: localizedRoutes["my-account"],
     url: "/my-account",
   },
 ];
