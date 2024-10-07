@@ -11,5 +11,7 @@
   "user": {
     "dashboard": "Dashboard",
     "logout": "Logout"
-  }
+  },
+  "recent-posts": "Recent Posts",
+  "top-posts": "Top Posts"
 }

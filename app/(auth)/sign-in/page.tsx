@@ -16,7 +16,9 @@ export default async function SignIn({
     ? callbackUrl[0]
     : callbackUrl ?? null;
 
-  const redirectTo = redirectUrlString ? (new URL(redirectUrlString)).pathname : '/';
+  const redirectTo = redirectUrlString
+    ? new URL(redirectUrlString).pathname
+    : "/";
 
   if (session) {
     redirect(redirectTo);

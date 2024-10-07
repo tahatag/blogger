@@ -4,7 +4,7 @@ import "@/styles/prosemirror.css";
 import { Providers, ThemeProvider } from "@/wrappers";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import { Noto_Sans_Arabic } from "next/font/google";
+import { Noto_Sans_Arabic, Noto_Serif } from "next/font/google";
 
 import { dir } from "i18next";
 import { detectLanguage, getServerTranslations } from "@/i18n/server";
@@ -15,6 +15,11 @@ const notoSansArabic = Noto_Sans_Arabic({
   display: "swap",
 });
 
+const notoSerif = Noto_Serif({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export async function generateMetadata() {
   const { t } = await getServerTranslations("common");
   return {
@@ -22,11 +27,6 @@ export async function generateMetadata() {
     description: t("description"),
   };
 }
-
-// export const metadata: Metadata = {
-//   title: "بلاگر",
-//   description: "وبلاگ روزانه‌ی تو",
-// };
 
 export default async function RootLayout({
   children,
@@ -42,7 +42,11 @@ export default async function RootLayout({
       <SessionProvider session={session}>
         <Providers dir={dir(lng)}>
           <html lang={lng} dir={dir(lng)} suppressHydrationWarning>
-            <body className={notoSansArabic.className}>
+            <body
+              className={
+                lng === "fa" ? notoSansArabic.className : notoSerif.className
+              }
+            >
               <ThemeProvider attribute="class" defaultTheme="light">
                 {children}
               </ThemeProvider>

@@ -11,5 +11,7 @@
   "user": {
     "dashboard": "داشبورد",
     "logout": "خروج"
-  }
+  },
+  "recent-posts": "پست‌های اخیر",
+  "top-posts": "پست‌های برتر"
 }

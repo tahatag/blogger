@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
   BoldIcon,
@@ -9,6 +8,7 @@ import {
 } from "lucide-react";
 import { EditorBubbleItem, useEditor } from "novel";
 import type { SelectorItem } from "./node-selector";
+import { Button } from "@/components/ui/button";
 
 export const TextButtons = () => {
   const { editor } = useEditor();

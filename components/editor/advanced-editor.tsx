@@ -14,18 +14,15 @@ import {
 import { ImageResizer, handleCommandNavigation } from "novel/extensions";
 import { useEffect, useState } from "react";
 import { defaultExtensions } from "./extensions";
-import { ColorSelector } from "./selectors/color-selector";
-import { LinkSelector } from "./selectors/link-selector";
-import { NodeSelector } from "./selectors/node-selector";
-import { MathSelector } from "./selectors/math-selector";
-import { Separator } from "@/components/ui/separator";
 
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
-// import GenerativeMenuSwitch from "./generative/generative-menu-switch";
 import { uploadFn } from "./image-upload";
-import { TextButtons } from "./selectors/text-buttons";
 import { slashCommand, suggestionItems } from "./slash-command";
 import { useDebouncedCallback } from "@/lib/useDebouncedCallback";
+import { NodeSelector } from "./selectors/node-selector";
+import { LinkSelector } from "./selectors/link-selector";
+import { TextButtons } from "./selectors/text-buttons";
+import { ColorSelector } from "./selectors/color-selector";
 
 const hljs = require("highlight.js");
 
@@ -145,20 +142,6 @@ const AdvancedEditor = () => {
               ))}
             </EditorCommandList>
           </EditorCommand>
-
-          {/* <GenerativeMenuSwitch open={openAI} onOpenChange={setOpenAI}>
-            <Separator orientation="vertical" />
-            <NodeSelector open={openNode} onOpenChange={setOpenNode} />
-            <Separator orientation="vertical" />
-
-            <LinkSelector open={openLink} onOpenChange={setOpenLink} />
-            <Separator orientation="vertical" />
-            <MathSelector />
-            <Separator orientation="vertical" />
-            <TextButtons />
-            <Separator orientation="vertical" />
-            <ColorSelector open={openColor} onOpenChange={setOpenColor} />
-          </GenerativeMenuSwitch> */}
           <EditorBubble
             tippyOptions={{
               placement: openAI ? "bottom-start" : "top",

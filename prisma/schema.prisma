@@ -18,6 +18,7 @@ model Post {
   id        Int     @id @default(autoincrement())
   title     String
   content   String?
+  cover     String?
   published Boolean @default(false)
   author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
