@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import "@/styles/globals.css";
 import "@/styles/prosemirror.css";
 import { Providers, ThemeProvider } from "@/wrappers";

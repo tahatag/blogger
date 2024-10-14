@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { PostCard } from "@/components/post-card";
 import { MiniPostCard } from "@/components/mini-post-card";
+import { Footer } from "@/components/footer";
 
 export default async function Home() {
   const { t, i18n } = await getServerTranslations("common");
@@ -73,11 +74,11 @@ export default async function Home() {
       <section className="container mt-12 grid grid-cols-12">
         <div
           className={cn(
-            "mt-4 col-span-4 md:col-span-8",
+            "md:mt-4 col-span-12 md:col-span-8 order-2 md:order-1",
             dir(i18n.resolvedLanguage) === "ltr" ? "md:pr-6" : "md:pl-6"
           )}
         >
-          <h2 className="text-lg font-black mb-8">{t('recent-posts')}</h2>
+          <h2 className="text-lg font-black mb-8">{t("recent-posts")}</h2>
           <PostCard
             id="213"
             authorAvatar="https://loremflickr.com/360/360"
@@ -145,13 +146,13 @@ export default async function Home() {
         </div>
         <div
           className={cn(
-            "mt-4 col-span-4 md:col-span-4",
+            "mb-8 md:mb-0 md:mt-4 col-span-12 md:col-span-4 py-8 md:py-0 order-1 md:order-2 border-b md:border-0",
             dir(i18n.resolvedLanguage) === "ltr"
-              ? "md:pl-6 border-l"
-              : "md:pr-6 border-r"
+              ? "md:pl-6 md:border-l"
+              : "md:pr-6 md:border-r"
           )}
         >
-          <h2 className="text-l font-black mb-8">{t('top-posts')}</h2>
+          <h2 className="text-lg font-black mb-8">{t("top-posts")}</h2>
           <MiniPostCard
             className="mt-8"
             id="213"
@@ -187,6 +188,12 @@ export default async function Home() {
           />
         </div>
       </section>
+      <Footer
+        routes={[
+          ...publicRoutes(localizedRoutes),
+          ...(session ? privateRoutes(localizedRoutes) : []),
+        ]}
+      />
     </main>
   );
 }

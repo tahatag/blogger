@@ -29,14 +29,15 @@ import { common, createLowlight } from "lowlight";
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
 //You can overwrite the placeholder with your own configuration
-const placeholder = Placeholder.configure({
-  placeholder: ({ node }) => {
-    if (node.type.name === "heading") {
-      return `عنوان ${node.attrs.level}`;
-    }
-    return "برای دستورات '/' را تایپ کنید.";
-  },
-});
+const placeholder = (headingText: string, placeholderText: string) =>
+  Placeholder.configure({
+    placeholder: ({ node }) => {
+      if (node.type.name === "heading") {
+        return `${headingText} ${node.attrs.level}`;
+      }
+      return placeholderText;
+    },
+  });
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
     class: cx(
@@ -157,9 +158,12 @@ const mathematics = Mathematics.configure({
 
 const characterCount = CharacterCount.configure();
 
-export const defaultExtensions = [
+export const defaultExtensions = (
+  headingText: string,
+  placeholderText: string
+) => [
   starterKit,
-  placeholder,
+  placeholder(headingText, placeholderText),
   tiptapLink,
   tiptapImage,
   updatedImage,

@@ -1,0 +1,62 @@
+{
+  "heading": "Heading",
+  "placeholder": "Type '/' to get started",
+  "saved": "Saved",
+  "unsaved": "Unsaved",
+  "words": "Words",
+  "no-results": "No results found.",
+  "slash-command": {
+    "paragraph": {
+      "title": "Text",
+      "description": "Just start typing with plain text."
+    },
+    "checklist": {
+      "title": "To-do List",
+      "description": "Track tasks with a to-do list."
+    },
+    "heading-1": {
+      "title": "Heading 1",
+      "description": "Big section heading."
+    },
+    "heading-2": {
+      "title": "Heading 2",
+      "description": "Medium section heading."
+    },
+    "heading-3": {
+      "title": "Heading 3",
+      "description": "Small section heading."
+    },
+    "bullet-list": {
+      "title": "Bullet List",
+      "description": "Create a simple bullet list."
+    },
+    "numbered-list": {
+      "title": "Numbered List",
+      "description": "Create a list with numbering."
+    },
+    "quote": {
+      "title": "Quote",
+      "description": "Capture a quote."
+    },
+    "code": {
+      "title": "Code",
+      "description": "Capture a code snippet."
+    },
+    "image": {
+      "title": "Image",
+      "description": "Upload an image from your computer."
+    },
+    "youtube": {
+      "title": "Youtube",
+      "description": "Embed a Youtube video.",
+      "prompt": "Please enter Youtube Video Link",
+      "error": "Please enter a correct Youtube Video Link"
+    },
+    "twitter": {
+      "title": "Twitter",
+      "description": "Embed a Tweet.",
+      "prompt": "Please enter Twitter Link",
+      "error": "Please enter a correct Twitter Link"
+    }
+  }
+}

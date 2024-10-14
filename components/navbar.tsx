@@ -177,7 +177,7 @@ const Navbar = React.forwardRef<HTMLHeadElement, INavbarProps>(
           </SheetContent>
         </Sheet>
         <div className="flex w-full">
-          <Link href="#" className="mr-6 ml-2 hidden lg:flex" prefetch={false}>
+          <Link href="/" className="mr-6 ml-2 hidden lg:flex" prefetch={false}>
             <Image width={118} height={32} alt="بلاگر" src="/blogger.svg" />
           </Link>
           <NavigationMenu className="hidden lg:flex mr-2">

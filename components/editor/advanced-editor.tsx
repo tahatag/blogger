@@ -17,28 +17,36 @@ import { defaultExtensions } from "./extensions";
 
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import { uploadFn } from "./image-upload";
-import { slashCommand, suggestionItems } from "./slash-command";
+import {
+  slashCommand,
+  slashCommandDictionaryType,
+  suggestionItems,
+} from "./slash-command";
 import { useDebouncedCallback } from "@/lib/useDebouncedCallback";
 import { NodeSelector } from "./selectors/node-selector";
 import { LinkSelector } from "./selectors/link-selector";
 import { TextButtons } from "./selectors/text-buttons";
 import { ColorSelector } from "./selectors/color-selector";
+import { useTranslation } from "react-i18next";
 
 const hljs = require("highlight.js");
-
-const extensions = [...defaultExtensions, slashCommand];
 
 const AdvancedEditor = () => {
   const [initialContent, setInitialContent] = useState<null | JSONContent>(
     null
   );
-  const [saveStatus, setSaveStatus] = useState("ذخیره شده");
+
+  const { t } = useTranslation("editor");
+  const slashCommandDictionary = t("slash-command", {
+    returnObjects: true,
+  }) as slashCommandDictionaryType;
+
+  const [saveStatus, setSaveStatus] = useState(t("saved"));
   const [charsCount, setCharsCount] = useState();
 
   const [openNode, setOpenNode] = useState(false);
   const [openColor, setOpenColor] = useState(false);
   const [openLink, setOpenLink] = useState(false);
-  const [openAI, setOpenAI] = useState(false);
 
   //Apply Codeblock Highlighting on the HTML from editor.getHTML()
   const highlightCodeblocks = (content: string) => {
@@ -64,7 +72,7 @@ const AdvancedEditor = () => {
         "markdown",
         editor.storage.markdown.getMarkdown()
       );
-      setSaveStatus("ذخیره شده");
+      setSaveStatus(t("saved"));
     },
     500
   );
@@ -90,13 +98,16 @@ const AdvancedEditor = () => {
               : "hidden"
           }
         >
-          {charsCount} کلمه
+          {charsCount} {t("words")}
         </div>
       </div>
       <EditorRoot>
         <EditorContent
           initialContent={initialContent}
-          extensions={extensions}
+          extensions={[
+            ...defaultExtensions(t("heading"), t("placeholder")),
+            slashCommand(slashCommandDictionary),
+          ]}
           className="relative min-h-[500px] w-full max-w-screen-lg border-muted bg-background sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:shadow-lg"
           editorProps={{
             handleDOMEvents: {
@@ -113,16 +124,16 @@ const AdvancedEditor = () => {
           }}
           onUpdate={({ editor }) => {
             debouncedUpdates(editor);
-            setSaveStatus("ذخیره نشده");
+            setSaveStatus(t("unsaved"));
           }}
           slotAfter={<ImageResizer />}
         >
           <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
             <EditorCommandEmpty className="px-2 text-muted-foreground">
-              نتیجه‌ای یافت نشد
+              {t("no-results")}
             </EditorCommandEmpty>
             <EditorCommandList>
-              {suggestionItems.map((item) => (
+              {suggestionItems(slashCommandDictionary).map((item) => (
                 <EditorCommandItem
                   value={item.title}
                   onCommand={(val) => item.command?.(val)}
@@ -144,7 +155,7 @@ const AdvancedEditor = () => {
           </EditorCommand>
           <EditorBubble
             tippyOptions={{
-              placement: openAI ? "bottom-start" : "top",
+              placement: "top",
             }}
             className="flex w-fit max-w-[90vw] overflow-hidden rounded border border-muted bg-background shadow-xl"
           >

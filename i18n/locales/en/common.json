@@ -1,12 +1,19 @@
 {
   "title": "Blogger",
   "description": "Your daily blogging platform",
+  "back": "Back",
+  "log-in-to": "Login to",
   "login": "Login with GitHub",
   "new-post": "New Post",
   "nav": {
     "home": "Home",
     "about-us": "About Us",
     "my-account": "My Account"
+  },
+  "footer": {
+    "quick-links": "Quick Links",
+    "about": "Blogger is a simple blogging platform built with Next.js.",
+    "copyright": "All rights reserved."
   },
   "user": {
     "dashboard": "Dashboard",

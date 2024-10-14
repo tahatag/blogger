@@ -1,0 +1,62 @@
+{
+  "heading": "عنوان",
+  "placeholder": "برای شروع '/' را تایپ کنید",
+  "saved": "ذخیره شده",
+  "unsaved": "دخیره نشده",
+  "words": "کلمه",
+  "no-results": "نتیجه‌ای یافت نشد.",
+  "slash-command": {
+    "paragraph": {
+      "title": "متن",
+      "description": "یک پاراگراف ساده."
+    },
+    "checklist": {
+      "title": "چک لیست",
+      "description": "چک لیست برنامه‌ریزی."
+    },
+    "heading-1": {
+      "title": "عنوان 1",
+      "description": "عنوان سکشن بزرگ."
+    },
+    "heading-2": {
+      "title": "عنوان 2",
+      "description": "عنوان سکشن متوسط."
+    },
+    "heading-3": {
+      "title": "عنوان 3",
+      "description": "عنوان سکشن کوچک."
+    },
+    "bullet-list": {
+      "title": "فهرست",
+      "description": "فهرست ساده."
+    },
+    "numbered-list": {
+      "title": "فهرست شماره‌دار",
+      "description": "فهرست شماره‌دار."
+    },
+    "quote": {
+      "title": "نقل قول",
+      "description": "یک نقل قول اضافه کنید."
+    },
+    "code": {
+      "title": "کد",
+      "description": "افزودن یک قطعه کد."
+    },
+    "image": {
+      "title": "تصویر",
+      "description": "تصویر دلخواه خود را آپلود کنید."
+    },
+    "youtube": {
+      "title": "یوتیوب",
+      "description": "افزودن ویدیو از یوتیوب.",
+      "prompt": "لینک ویدیوی یوتیوب را وارد کنید",
+      "error": "لطفا لینک یک ویدیوی معتبر را وارد کنید"
+    },
+    "twitter": {
+      "title": "توییتر",
+      "description": "یک توییت در پست جای دهید.",
+      "prompt": "لینک توییت را وارد کنید",
+      "error": "لطفا لینک یک توییت معتبر را وارد کنید"
+    }
+  }
+}
