@@ -33,7 +33,6 @@ export function I18nProvider({
 }) {
   useMemo(() => {
     i18next.changeLanguage(language);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <Provider i18n={i18next}>{children}</Provider>;
 }

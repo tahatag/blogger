@@ -15,7 +15,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { signOut, useSession } from "next-auth/react";
 import i18next from "i18next";
 import { useRouter } from "next/navigation";
@@ -56,7 +56,7 @@ const UserMenu = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <Link href="/dashboard">
+        <Link href="/my-account">
           <DropdownMenuItem className="gap-2 cursor-pointer">
             <LayoutDashboard size={18} />
             {t("user.dashboard")}
@@ -80,7 +80,7 @@ const UserMenu = () => {
 };
 
 const LanguageSelect = () => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation("common");
   const router = useRouter();
 
   const handleChangeLanguage = (lang: string) => {
@@ -154,7 +154,7 @@ const Navbar = React.forwardRef<HTMLHeadElement, INavbarProps>(
               <Image
                 width={118}
                 height={32}
-                alt="بلاگر"
+                alt="Blogger"
                 src="/blogger.svg"
                 className="mt-4"
               />
@@ -178,7 +178,7 @@ const Navbar = React.forwardRef<HTMLHeadElement, INavbarProps>(
         </Sheet>
         <div className="flex w-full">
           <Link href="/" className="mr-6 ml-2 hidden lg:flex" prefetch={false}>
-            <Image width={118} height={32} alt="بلاگر" src="/blogger.svg" />
+            <Image width={118} height={32} alt="Blogger" src="/blogger.svg" />
           </Link>
           <NavigationMenu className="hidden lg:flex mr-2">
             <NavigationMenuList className="gap-1">

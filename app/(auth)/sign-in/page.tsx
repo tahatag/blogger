@@ -1,10 +1,8 @@
 import { auth, signIn } from "@/auth";
+import { BackButton } from "@/components/back-button";
 import { Button } from "@/components/ui/button";
-import { detectLanguage, getServerTranslations } from "@/i18n/server";
-import { cn } from "@/lib/utils";
-import { dir } from "i18next";
-import { ArrowLeft, ArrowRight, Github } from "lucide-react";
-import Link from "next/link";
+import { getServerTranslations } from "@/i18n/server";
+import { Github } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export default async function SignIn({
@@ -14,7 +12,6 @@ export default async function SignIn({
 }) {
   const session = await auth();
   const { t } = await getServerTranslations("common");
-  const lng = await detectLanguage();
 
   const { callbackUrl } = searchParams;
   const redirectUrlString = Array.isArray(callbackUrl)
@@ -31,20 +28,7 @@ export default async function SignIn({
 
   return (
     <main className="bg-background flex min-h-screen flex-col items-center">
-      <Link
-        href="/"
-        className={cn(
-          "absolute top-6",
-          dir(lng) === "rtl" ? "right-6" : "left-6"
-        )}
-      >
-        <Button asChild variant="ghost">
-          <div>
-            {dir(lng) === "rtl" ? <ArrowRight /> : <ArrowLeft />}
-            {t("back")}
-          </div>
-        </Button>
-      </Link>
+      <BackButton />
       <div className="flex-1 flex flex-col items-center justify-center gap">
         <p className="mb-4 text-4xl font-light">
           {t("log-in-to")}{" "}

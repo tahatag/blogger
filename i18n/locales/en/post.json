@@ -1,4 +1,51 @@
 {
+  "title": "Title",
+  "post": "Post",
+  "description": "Description",
+  "cover-picture": "Cover Picture",
+  "category": "Category",
+  "content": "Content",
+  "new-post": "New Post",
+  "save": "Save",
+  "saving": "Saving",
+  "post-settings": "Post Settings",
+  "publish": "Publish",
+  "upload": "Upload",
+  "author": {
+    "member-since": "Member since",
+    "total-likes": "Total Likes Received",
+    "errors": {
+      "not-found": "Author not found.",
+      "failed": "Error retrieving the author."
+    }
+  },
+  "categories": {
+    "choose": "Choose One",
+    "music": "music",
+    "books": "books",
+    "science": "science",
+    "sports": "sports",
+    "technology": "technology",
+    "news": "news",
+    "food": "food",
+    "daily": "daily",
+    "entertainment": "entertainment"
+  },
+  "errors": {
+    "auth": "You must login to post.",
+    "required": "Can't be empty.",
+    "failed": "Error saving/retrieving the post.",
+    "general": "Something went wrong, please try again.",
+    "not-found": "Post not found."
+  },
+  "success": "Post succssefully saved.",
+  "image": {
+    "error-general": "Error uploading image. Please try again.",
+    "error-type": "File type not supported.",
+    "error-too-big": "File size too big (max 4MB).",
+    "loading": "Uploading image...",
+    "success": "Image uploaded successfully."
+  },
   "heading": "Heading",
   "placeholder": "Type '/' to get started",
   "saved": "Saved",

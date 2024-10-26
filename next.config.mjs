@@ -1,9 +1,20 @@
-import { hostname } from "os";
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
+      {
+        hostname: "placehold.co",
+      },
+      {
+        hostname: "**.vercel-storage.com",
+      },
+      {
+        hostname: "avatar.iran.liara.run",
+      },
+      {
+        hostname: "picsum.photos",
+      },
       {
         hostname: "loremflickr.com",
       },

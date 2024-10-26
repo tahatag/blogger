@@ -47,6 +47,7 @@ export async function detectLanguage() {
 }
 
 export const getServerTranslations = cache(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async (ns: string, options: { [key: string]: any } = {}) => {
     const language = await detectLanguage();
     const i18nextInstance = await initServerI18next(language, ns);

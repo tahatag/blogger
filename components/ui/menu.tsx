@@ -1,8 +1,14 @@
 "use client";
 
+import React from "react";
 import { Check, Menu as MenuIcon, Monitor, Moon, SunDim } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button, Popover, PopoverContent, PopoverTrigger } from "@/components";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "./button";
 
 const appearances = [
   {

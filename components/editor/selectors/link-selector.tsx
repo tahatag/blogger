@@ -1,5 +1,10 @@
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { Check, Trash } from "lucide-react";
 import { useEditor } from "novel";
@@ -9,7 +14,7 @@ export function isValidUrl(url: string) {
   try {
     new URL(url);
     return true;
-  } catch (_e) {
+  } catch (e) {
     return false;
   }
 }
@@ -19,7 +24,7 @@ export function getUrlFromString(str: string) {
     if (str.includes(".") && !str.includes(" ")) {
       return new URL(`https://${str}`).toString();
     }
-  } catch (_e) {
+  } catch (e) {
     return null;
   }
 }

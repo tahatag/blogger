@@ -14,22 +14,14 @@ import {
 } from "lucide-react";
 import { createSuggestionItems } from "novel/extensions";
 import { Command, renderItems } from "novel/extensions";
-import { uploadFn } from "./image-upload";
+import { uploadFn } from "@/lib/image-upload";
+import { TFunction } from "i18next";
 
-export type slashCommandDictionaryType = {
-  [key: string]: {
-    title: string;
-    description: string;
-    prompt?: string;
-    error?: string;
-  };
-};
-
-export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
+export const suggestionItems = (dictionary: TFunction<any, any>) =>
   createSuggestionItems([
     {
-      title: dictionary["paragraph"].title,
-      description: dictionary["paragraph"].description,
+      title: dictionary("slash-command.paragraph.title"),
+      description: dictionary("slash-command.paragraph.description"),
       searchTerms: ["p", "paragraph"],
       icon: <Text size={18} />,
       command: ({ editor, range }) => {
@@ -42,8 +34,8 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
       },
     },
     {
-      title: dictionary["checklist"].title,
-      description: dictionary["checklist"].description,
+      title: dictionary("slash-command.checklist.title"),
+      description: dictionary("slash-command.checklist.description"),
       searchTerms: ["todo", "task", "list", "check", "checkbox"],
       icon: <CheckSquare size={18} />,
       command: ({ editor, range }) => {
@@ -51,8 +43,8 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
       },
     },
     {
-      title: dictionary["heading-1"].title,
-      description: dictionary["heading-1"].description,
+      title: dictionary("slash-command.heading-1.title"),
+      description: dictionary("slash-command.heading-1.description"),
       searchTerms: ["title", "big", "large"],
       icon: <Heading1 size={18} />,
       command: ({ editor, range }) => {
@@ -65,8 +57,8 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
       },
     },
     {
-      title: dictionary["heading-2"].title,
-      description: dictionary["heading-2"].description,
+      title: dictionary("slash-command.heading-2.title"),
+      description: dictionary("slash-command.heading-2.description"),
       searchTerms: ["subtitle", "medium"],
       icon: <Heading2 size={18} />,
       command: ({ editor, range }) => {
@@ -79,8 +71,8 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
       },
     },
     {
-      title: dictionary["heading-3"].title,
-      description: dictionary["heading-3"].description,
+      title: dictionary("slash-command.heading-3.title"),
+      description: dictionary("slash-command.heading-3.description"),
       searchTerms: ["subtitle", "small"],
       icon: <Heading3 size={18} />,
       command: ({ editor, range }) => {
@@ -93,8 +85,8 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
       },
     },
     {
-      title: dictionary["bullet-list"].title,
-      description: dictionary["bullet-list"].description,
+      title: dictionary("slash-command.bullet-list.title"),
+      description: dictionary("slash-command.bullet-list.description"),
       searchTerms: ["unordered", "point"],
       icon: <List size={18} />,
       command: ({ editor, range }) => {
@@ -102,8 +94,8 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
       },
     },
     {
-      title: dictionary["numbered-list"].title,
-      description: dictionary["numbered-list"].description,
+      title: dictionary("slash-command.numbered-list.title"),
+      description: dictionary("slash-command.numbered-list.description"),
       searchTerms: ["ordered"],
       icon: <ListOrdered size={18} />,
       command: ({ editor, range }) => {
@@ -111,8 +103,8 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
       },
     },
     {
-      title: dictionary["quote"].title,
-      description: dictionary["quote"].description,
+      title: dictionary("slash-command.quote.title"),
+      description: dictionary("slash-command.quote.description"),
       searchTerms: ["blockquote"],
       icon: <TextQuote size={18} />,
       command: ({ editor, range }) =>
@@ -125,16 +117,16 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
           .run(),
     },
     {
-      title: dictionary["code"].title,
-      description: dictionary["code"].description,
+      title: dictionary("slash-command.code.title"),
+      description: dictionary("slash-command.code.description"),
       searchTerms: ["codeblock"],
       icon: <Code size={18} />,
       command: ({ editor, range }) =>
         editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
     },
     {
-      title: dictionary["image"].title,
-      description: dictionary["image"].description,
+      title: dictionary("slash-command.image.title"),
+      description: dictionary("slash-command.image.description"),
       searchTerms: ["photo", "picture", "media"],
       icon: <ImageIcon size={18} />,
       command: ({ editor, range }) => {
@@ -147,19 +139,19 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
           if (input.files?.length) {
             const file = input.files[0];
             const pos = editor.view.state.selection.from;
-            uploadFn(file, editor.view, pos);
+            uploadFn(dictionary)(file, editor.view, pos);
           }
         };
         input.click();
       },
     },
     {
-      title: dictionary["youtube"].title,
-      description: dictionary["youtube"].description,
+      title: dictionary("slash-command.youtube.title"),
+      description: dictionary("slash-command.youtube.description"),
       searchTerms: ["video", "youtube", "embed"],
       icon: <Youtube size={18} />,
       command: ({ editor, range }) => {
-        const videoLink = prompt(dictionary["youtube"].prompt);
+        const videoLink = prompt(dictionary("slash-command.youtube.prompt"));
         //From https://regexr.com/3dj5t
         const ytregex = new RegExp(
           /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/
@@ -176,18 +168,18 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
             .run();
         } else {
           if (videoLink !== null) {
-            alert(dictionary["youtube"].error);
+            alert(dictionary("slash-command.youtube.error"));
           }
         }
       },
     },
     {
-      title: dictionary["twitter"].title,
-      description: dictionary["twitter"].description,
+      title: dictionary("slash-command.twitter.title"),
+      description: dictionary("slash-command.twitter.description"),
       searchTerms: ["twitter", "embed"],
       icon: <Twitter size={18} />,
       command: ({ editor, range }) => {
-        const tweetLink = prompt(dictionary["twitter"].prompt);
+        const tweetLink = prompt(dictionary("slash-command.twitter.prompt"));
         const tweetRegex = new RegExp(
           /^https?:\/\/(www\.)?x\.com\/([a-zA-Z0-9_]{1,15})(\/status\/(\d+))?(\/\S*)?$/
         );
@@ -203,14 +195,14 @@ export const suggestionItems = (dictionary: slashCommandDictionaryType) =>
             .run();
         } else {
           if (tweetLink !== null) {
-            alert(dictionary["twitter"].error);
+            alert(dictionary("slash-command.twitter.error"));
           }
         }
       },
     },
   ]);
 
-export const slashCommand = (dictionary: slashCommandDictionaryType) =>
+export const slashCommand = (dictionary: TFunction<any, any>) =>
   Command.configure({
     suggestion: {
       items: () => suggestionItems(dictionary),

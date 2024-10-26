@@ -1,6 +1,6 @@
-import { Github, Plus } from "lucide-react";
+import { Github, Plus, Repeat } from "lucide-react";
 
-import { privateRoutes, publicRoutes } from "./constants/routes";
+import { renderPrivateRoutes, renderPublicRoutes } from "@/lib/constants";
 import Image from "next/image";
 import { auth, signIn } from "@/auth";
 import Link from "next/link";
@@ -9,13 +9,12 @@ import { cn } from "@/lib/utils";
 import { dir } from "i18next";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { PostCard } from "@/components/post-card";
-import { MiniPostCard } from "@/components/mini-post-card";
 import { Footer } from "@/components/footer";
+import { PostsColumn } from "@/components/post/posts-column";
 
 export default async function Home() {
   const { t, i18n } = await getServerTranslations("common");
+
   const session = await auth();
 
   const localizedRoutes = t("nav", {
@@ -26,8 +25,8 @@ export default async function Home() {
     <main className="bg-background flex min-h-screen flex-col items-center">
       <Navbar
         routes={[
-          ...publicRoutes(localizedRoutes),
-          ...(session ? privateRoutes(localizedRoutes) : []),
+          ...renderPublicRoutes(localizedRoutes),
+          ...(session ? renderPrivateRoutes(localizedRoutes) : []),
         ]}
         activeRoute="/"
       />
@@ -67,131 +66,41 @@ export default async function Home() {
           src="/hero.svg"
           width={420}
           height={308}
-          alt="بلاگر"
+          alt="Blogger"
           className="md:w-96 w-48"
         />
       </section>
-      <section className="container mt-12 grid grid-cols-12">
+      <section className="container mt-12 grid grid-cols-3">
         <div
           className={cn(
-            "md:mt-4 col-span-12 md:col-span-8 order-2 md:order-1",
+            "md:mt-4 col-span-3 md:col-span-2 order-2 md:order-1",
             dir(i18n.resolvedLanguage) === "ltr" ? "md:pr-6" : "md:pl-6"
           )}
         >
           <h2 className="text-lg font-black mb-8">{t("recent-posts")}</h2>
-          <PostCard
-            id="213"
-            authorAvatar="https://loremflickr.com/360/360"
-            authorName="Taha Taghaddos"
-            authorUrl="/taha-tag"
-            title="Very Cool Post MEOW"
-            url="/taha-tag/very-cool-post-meow"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Dictum varius duis at consectetur lorem. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Velit ut tortor pretium viverra suspendisse potenti nullam. Et molestie ac feugiat sed lectus. Non nisi est sit amet facilisis magna. Dignissim diam quis enim lobortis scelerisque fermentum. Odio ut enim blandit volutpat maecenas volutpat. Ornare lectus sit amet est placerat in egestas erat. Nisi vitae suscipit tellus mauris a diam maecenas sed. Placerat duis ultricies lacus sed turpis tincidunt id aliquet."
-            date="July 5th"
-            likes={145}
-            liked={false}
-            bookmarked={false}
-            cover="https://loremflickr.com/1280/720"
-            className="mt-8"
-          />
-          <Separator className="mt-8" />
-          <PostCard
-            id="213"
-            authorAvatar="https://loremflickr.com/360/360"
-            authorName="Taha Taghaddos"
-            authorUrl="/taha-tag"
-            title="Very Cool Post MEOW"
-            url="/taha-tag/very-cool-post-meow"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Dictum varius duis at consectetur lorem. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Velit ut tortor pretium viverra suspendisse potenti nullam. Et molestie ac feugiat sed lectus. Non nisi est sit amet facilisis magna. Dignissim diam quis enim lobortis scelerisque fermentum. Odio ut enim blandit volutpat maecenas volutpat. Ornare lectus sit amet est placerat in egestas erat. Nisi vitae suscipit tellus mauris a diam maecenas sed. Placerat duis ultricies lacus sed turpis tincidunt id aliquet."
-            date="July 5th"
-            likes={145}
-            liked={false}
-            bookmarked={true}
-            cover="https://loremflickr.com/1280/720"
-            className="mt-8"
-          />
-          <Separator className="mt-8" />
-          <PostCard
-            id="213"
-            authorAvatar="https://loremflickr.com/360/360"
-            authorName="Taha Taghaddos"
-            authorUrl="/taha-tag"
-            title="Very Cool Post MEOW"
-            url="/taha-tag/very-cool-post-meow"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Dictum varius duis at consectetur lorem. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Velit ut tortor pretium viverra suspendisse potenti nullam. Et molestie ac feugiat sed lectus. Non nisi est sit amet facilisis magna. Dignissim diam quis enim lobortis scelerisque fermentum. Odio ut enim blandit volutpat maecenas volutpat. Ornare lectus sit amet est placerat in egestas erat. Nisi vitae suscipit tellus mauris a diam maecenas sed. Placerat duis ultricies lacus sed turpis tincidunt id aliquet."
-            date="July 5th"
-            likes={145}
-            liked={false}
-            bookmarked={true}
-            cover="https://loremflickr.com/1280/720"
-            className="mt-8"
-          />
-          <Separator className="mt-8" />
-          <PostCard
-            id="213"
-            authorAvatar="https://loremflickr.com/360/360"
-            authorName="Taha Taghaddos"
-            authorUrl="/taha-tag"
-            title="Very Cool Post MEOW"
-            url="/taha-tag/very-cool-post-meow"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi. Arcu cursus vitae congue mauris rhoncus aenean vel elit scelerisque. In egestas erat imperdiet sed euismod nisi porta lorem mollis. Morbi tristique senectus et netus. Mattis pellentesque id nibh tortor id aliquet lectus proin. Sapien faucibus et molestie ac feugiat sed lectus vestibulum. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Dictum varius duis at consectetur lorem. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Velit ut tortor pretium viverra suspendisse potenti nullam. Et molestie ac feugiat sed lectus. Non nisi est sit amet facilisis magna. Dignissim diam quis enim lobortis scelerisque fermentum. Odio ut enim blandit volutpat maecenas volutpat. Ornare lectus sit amet est placerat in egestas erat. Nisi vitae suscipit tellus mauris a diam maecenas sed. Placerat duis ultricies lacus sed turpis tincidunt id aliquet."
-            date="July 5th"
-            likes={145}
-            liked={false}
-            bookmarked={true}
-            cover="https://loremflickr.com/1280/720"
-            className="mt-8"
-          />
-          <Separator className="mt-8" />
+          <PostsColumn queryKey="recent-posts" variant="normal" />
         </div>
         <div
           className={cn(
-            "mb-8 md:mb-0 md:mt-4 col-span-12 md:col-span-4 py-8 md:py-0 order-1 md:order-2 border-b md:border-0",
+            "mb-8 md:mb-0 md:mt-4 col-span-3 md:col-span-1 py-8 md:py-0 order-1 md:order-2 border-b md:border-0",
             dir(i18n.resolvedLanguage) === "ltr"
               ? "md:pl-6 md:border-l"
               : "md:pr-6 md:border-r"
           )}
         >
           <h2 className="text-lg font-black mb-8">{t("top-posts")}</h2>
-          <MiniPostCard
-            className="mt-8"
-            id="213"
-            authorAvatar="https://loremflickr.com/360/360"
-            authorName="Taha Taghaddos"
-            authorUrl="/taha-tag"
-            title="Very Cool Post MEOW"
-            url="/taha-tag/very-cool-post-meow"
-            likes={953}
-            liked={false}
-          />
-          <MiniPostCard
-            className="mt-8"
-            id="213"
-            authorAvatar="https://loremflickr.com/360/360"
-            authorName="Taha Taghaddos"
-            authorUrl="/taha-tag"
-            title="Very Cool Post MEOW"
-            url="/taha-tag/very-cool-post-meow"
-            likes={458}
-            liked={true}
-          />
-          <MiniPostCard
-            className="mt-8"
-            id="213"
-            authorAvatar="https://loremflickr.com/360/360"
-            authorName="Taha Taghaddos"
-            authorUrl="/taha-tag"
-            title="Very Cool Post MEOW"
-            url="/taha-tag/very-cool-post-meow"
-            likes={362}
-            liked={false}
+          <PostsColumn
+            queryKey="top-posts"
+            order="likes"
+            variant="mini"
+            count={3}
           />
         </div>
       </section>
       <Footer
         routes={[
-          ...publicRoutes(localizedRoutes),
-          ...(session ? privateRoutes(localizedRoutes) : []),
+          ...renderPublicRoutes(localizedRoutes),
+          ...(session ? renderPrivateRoutes(localizedRoutes) : []),
         ]}
       />
     </main>

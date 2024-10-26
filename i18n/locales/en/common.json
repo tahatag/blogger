@@ -2,6 +2,7 @@
   "title": "Blogger",
   "description": "Your daily blogging platform",
   "back": "Back",
+  "not-found": "Page Not Found.",
   "log-in-to": "Login to",
   "login": "Login with GitHub",
   "new-post": "New Post",
@@ -16,9 +17,19 @@
     "copyright": "All rights reserved."
   },
   "user": {
+    "posts": "Posts",
+    "likes": "Likes",
+    "bookmarks": "Bookmarks",
     "dashboard": "Dashboard",
-    "logout": "Logout"
+    "logout": "Logout",
+    "errors": {
+      "auth": "You must first authenticate.",
+      "failed": "An error occured, try again."
+    }
   },
   "recent-posts": "Recent Posts",
-  "top-posts": "Top Posts"
+  "top-posts": "Top Posts",
+  "published": "Published",
+  "draft": "Draft",
+  "load-more": "Load More"
 }
